@@ -6,7 +6,7 @@
 	<property name="pydoc.dir" value="docs"/>
 
   	<target name="compile">
-    	<py-compile python="python.exe" dir="${src.dir}" pythonpath="${src.dir}" optimize="0"/>
+    	<py-compile python="python" dir="${src.dir}" pythonpath="${src.dir}" optimize="0"/>
   	</target>
 
 	<target name="init">
@@ -14,11 +14,24 @@
 	</target>
 
 	 <target name="pydoc" depends="init">
- 		<py-doc python="python.exe" pythonpath="${src.dir}" destdir="${pydoc.dir}">
+ 		<py-doc python="python" pythonpath="${src.dir}" destdir="${pydoc.dir}">
  			<fileset dir="${src.dir}">
   				<include name="**/*.py"/>
     		</fileset>
    		</py-doc>
+	</target>
+	
+	<!--
+		Execute Python unit tests.
+		This will treat any files under src/ that end in Test.py as a Python
+		unit test module.
+	-->
+	<target name="tests" depends="compile">
+		<py-test python="python" pythonpath="${src.dir}" dir=".">
+			<fileset dir="${src.dir}">
+				<include name="**/*Test.py"/>
+			</fileset>
+		</py-test>
 	</target>
 	
 </project>
