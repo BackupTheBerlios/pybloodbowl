@@ -64,6 +64,18 @@ class BBTeamHandler(xml.sax.handler.ContentHandler):
             self.skillmapping[(self.team,self.player)].append(attributes["name"])
         if name == "pick":
             self.pickmapping[(self.team,self.player)].append(attributes["category"])
+            
+    def getTeams(self):
+        return self.teams
+        
+    def getPlayers(self):
+        return self.mapping
+        
+    def getPlayerSkills(self):
+        return self.skillmapping
+        
+    def getPlayerPicks(self):
+        return self.pickmapping
 
 class BBTeamParser:
     """Team Parser für teams.xml file. Verwendet BBTeamHandler."""
@@ -71,21 +83,34 @@ class BBTeamParser:
         self.parser = xml.sax.make_parser()
         self.handler = BBTeamHandler()
         self.parser.setContentHandler(self.handler)
-        self.parser.parse(skillfile)
+        self.parser.parse(teamfile)
         
+    def getTeams(self):
+        teams = self.handler.getTeams()
+        return teams
+        
+    def getPlayers(self):
+        players = self.handler.getPlayers()
+        return players
+        
+    def getPlayerSkills(self):
+        playerskills = self.handler.getPlayerSkills()
+        return playerskills
+    
+    def getPlayerPicks(self):
+        playerpicks = self.handler.getPlayerPicks()
+        return playerpicks
+    
 if __name__ == "__main__":
+    ##########################################################################
+    ### Test
+    ##########################################################################
     import pprint
-    #p = BBSkillParser()
-    #pprint.pprint(p.getSkills())
-    parser = xml.sax.make_parser()
-    handler = BBTeamHandler()
-    parser.setContentHandler(handler)
-    parser.parse("teams.xml")
-    pprint.pprint(handler.teams)
-    print ""
-    pprint.pprint(handler.mapping)
-    print ""
-    pprint.pprint(handler.skillmapping)
-    print ""
-    pprint.pprint(handler.pickmapping)
+    p = BBSkillParser()
+    pprint.pprint(p.getSkills())
+    t = BBTeamParser()
+    pprint.pprint(t.getTeams())
+    pprint.pprint(t.getPlayers())
+    pprint.pprint(t.getPlayerSkills())
+    pprint.pprint(t.getPlayerPicks())
     
