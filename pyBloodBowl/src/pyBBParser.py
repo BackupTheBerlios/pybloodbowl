@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = "Thorsten Schmidt"
-__version__ = "0.0.1"
+__version__ = "0.1.1"
 
 import xml.sax.handler
 
@@ -46,6 +46,8 @@ class BBTeamHandler(xml.sax.handler.ContentHandler):
     def __init__(self):
         self.buffer = ""
         self.mapping = {}
+        self.positions = []
+        self.teampositions = {}
         self.skillmapping = {}
         self.pickmapping = {}
         self.teams = []
@@ -55,21 +57,32 @@ class BBTeamHandler(xml.sax.handler.ContentHandler):
         if name == "team":
             self.team = attributes["name"]
             self.teams.append(attributes["name"])
+            self.teampositions[self.team] = self.positions
         if name == "player":
             self.player = attributes["name"]
             self.mapping[(self.team,self.player)] = (attributes["max"],attributes["ma"],attributes["st"],attributes["ag"],attributes["av"],attributes["cost"])
+            self.positions.append(self.player)
             self.skillmapping[(self.team,self.player)] = [] #initialize list
             self.pickmapping[(self.team,self.player)] = [] #initialize list
         if name == "skill":
             self.skillmapping[(self.team,self.player)].append(attributes["name"])
         if name == "pick":
             self.pickmapping[(self.team,self.player)].append(attributes["category"])
-            
+    
+    def endElement(self, name):
+        if name == "team":
+            self.teampositions[self.team] = self.positions
+            self.positions = []
+    
     def getTeams(self):
         return self.teams
         
     def getPlayers(self):
         return self.mapping
+
+    def getTeamPositions(self, team):
+        print self.teampositions
+        return self.teampositions[team]
         
     def getPlayerSkills(self):
         return self.skillmapping
@@ -86,18 +99,31 @@ class BBTeamParser:
         self.parser.parse(teamfile)
         
     def getTeams(self):
+        """-> List
+        Returns all Teams in a list."""
         teams = self.handler.getTeams()
         return teams
         
+    def getTeamPositions(self, team):
+        """-> List
+        Returns all position of the given team in a list."""
+        return self.handler.getTeamPositions(team)
+        
     def getPlayers(self):
+        """-> Dict
+        Returns all Players in a dictionary. Key is a tuple of Team and Position."""
         players = self.handler.getPlayers()
         return players
         
     def getPlayerSkills(self):
+        """-> Dict
+        Returns all Player Skills in a dictionary. Key is a tuple of Team and Position."""
         playerskills = self.handler.getPlayerSkills()
         return playerskills
     
     def getPlayerPicks(self):
+        """-> Dict
+        Returns all possible Player picks in a dictionary. Key is a tuple of Team and Position."""
         playerpicks = self.handler.getPlayerPicks()
         return playerpicks
     
@@ -107,10 +133,11 @@ if __name__ == "__main__":
     ##########################################################################
     import pprint
     p = BBSkillParser()
-    pprint.pprint(p.getSkills())
+    #pprint.pprint(p.getSkills())
     t = BBTeamParser()
-    pprint.pprint(t.getTeams())
-    pprint.pprint(t.getPlayers())
+    #pprint.pprint(t.getTeams())
+    #pprint.pprint(t.getPlayers())
     pprint.pprint(t.getPlayerSkills())
-    pprint.pprint(t.getPlayerPicks())
+    #pprint.pprint(t.getPlayerPicks())
+    #pprint.pprint(t.getTeamPositions("Chaos"))
     
