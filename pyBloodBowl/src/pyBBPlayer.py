@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 __author__ = "Thorsten Schmidt"
 __version__ = "0.1.1"
+__SSP_COMPLETION__ = 1
+__SSP_TOUCHDOWN__ = 3
+__SSP_INTERCEPTION__ = 2
+__SSP_CASUALTY__ = 2
+__SSP_MVP__ = 5
 
 import pyBBParser
 
@@ -28,6 +33,13 @@ class BBPlayer:
         self.ag = int(stats[3])     #agility
         self.av = int(stats[4])     #armor value
         self.costs = int(stats[5])  #costs
+        self.injury = 0             #injury
+        self.ssp = 0                #starplayerpoints
+        self.touchdowns = 0         #touchdown
+        self.completions = 0        #completions
+        self.interceptions = 0      #interceptions
+        self.casualties = 0         #casualties
+        self.mvpawards = 0          #most valuable player awards
         
     def _initSkills(self):
         """Initialize player with initial skills."""
@@ -44,20 +56,36 @@ class BBPlayer:
         Returns players movement."""
         return self.ma
         
+    def setMovement(self, movement):
+        """Set the players movement."""
+        self.ma = movement
+                
     def getStrength(self):
         """-> int
         Returns players strength."""
         return self.st
+        
+    def setStrength(self, strength):
+        """Set the players strength."""
+        self.st = strength
         
     def getAgility(self):
         """-> int
         Returns players agility."""
         return self.ag
         
+    def setAgility(self, agility):
+        """Set the players agility."""
+        self.ag = agility
+        
     def getArmor(self):
         """-> int
         Returns players armor value."""
         return self.av
+        
+    def setArmor(self, armor):
+        """Set the players armor value."""
+        self.av = armor
         
     def getCosts(self):
         """-> int
@@ -73,6 +101,65 @@ class BBPlayer:
         """-> list
         Returns a list of all player picks."""
         return self.picks
+        
+    def getTouchdowns(self):
+        """-> int
+        Returns the number of scored touchdowns."""
+        return self.touchdowns
+        
+    def addTouchdowns(self, number):
+        """Adding a number of touchdowns."""
+        self.touchdowns += number
+        self.ssp += (number * __SSP_TOUCHDOWN__)
+        
+    def getCompletions(self):
+        """- int
+        Returns the number of completions."""
+        return self.completions
+        
+    def addCompletions(self, number):
+        """Adding a number of completions."""
+        self.completions += number
+        self.ssp += (number * __SSP_COMPLETION__)
+        
+    def getInterceptions(self):
+        """-> int
+        Returns the number of interceptions."""
+        return self.interceptions
+        
+    def addInterceptions(self, number):
+        """Adding a number of interceptions."""
+        self.interceptions += number
+        self.ssp += (number * __SSP_INTERCEPTION__)
+        
+    def getCasualties(self):
+        """-> int
+        Returns the number of caused casualties."""
+        return self.casualties
+        
+    def addCasualties(self, number):
+        """Adding a number of casualties."""
+        self.casualties += number
+        self.ssp += (number * __SSP_CASUALTY__)
+        
+    def getMVPAwards(self):
+        """-> int
+        Returns the number of earned MVP awards."""
+        return self.mvpawards
+        
+    def addMVPAwards(self, number):
+        """Adding a number of MVP Awards."""
+        self.mvpawards += number
+        self.ssp += (number * __SSP_MVP__)
+        
+    def getSSP(self):
+        """-> int
+        Returns the number of StarPlayerPoints."""
+        return self.ssp
+        
+    def addNigglingInjury(self, number):
+        """Gain a number of new niggling injuries."""
+        self.injury += number
     
     def addSkill(self, newskill):
         """Add a newskill to the players list of skills."""
@@ -107,4 +194,5 @@ if __name__ == "__main__":
 
     print p.__repr__().encode("latin-1")
     print p.isValidSkill("bla")
-    print type(p)
+    p.addTouchdowns(2)
+    print p.getSSP()
