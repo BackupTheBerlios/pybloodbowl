@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skills>
+	<skill name="Blocken" type="Fertigkeit" category="Allgeimein">Blocken...</skill>
+	<skill name="Tackle" type="Fertigkeit" category="Allgeimein">Tackle</skill>
+	<skill name="Unerschrocken" type="Merkmal" category="Allgeimein">Unerschrocken</skill>
+	<skill name="Brutal" type="Fertigkeit" category="Allgeimein">Brutal</skill>
+	<skill name="Rasend" type="Merkmal" category="Allgeimein">Rasend</skill>
+	<skill name="Kicken" type="Fertigkeit" category="Allgeimein">Kicken</skill>
+	<skill name="Teamkapitän" type="Merkmal" category="Allgeimein">Teamkapitän</skill>
+	<skill name="Nerve aus Stahl" type="Merkmal" category="Allgeimein">Nerven aus Stahl</skill>
+	<skill name="Pass Block" type="Fertigkeit" category="Allgeimein">Pass Block</skill>
+	<skill name="Profi" type="Merkmal" category="Allgeimein">Profi</skill>
+	<skill name="Manndeckung" type="Fertigkeit" category="Allgeimein">Manndeckung</skill>
+	<skill name="Ball entreissen" type="Fertigkeit" category="Allgeimein">Ball entreissen</skill>
+	<skill name="Ballgefühl" type="Fertigkeit" category="Allgeimein">Ballgefühl</skill>
+	
+	<skill name="Fangsicher" type="Fertigkeit" category="Geschicklichkeit">Fangsicher</skill>
+	<skill name="Diving Catch" type="Fertigkeit" category="Geschicklichkeit">Diving Catch</skill>
+	<skill name="Diving Tackle" type="Fertigkeit" category="Geschicklichkeit">Diving Tackle</skill>
+	<skill name="Ausweichen" type="Fertigkeit" category="Geschicklichkeit">Ausweichen</skill>
+	<skill name="Abrollen" type="Merkmal" category="Geschicklichkeit">Abrollen</skill>
+	<skill name="Springen" type="Fertigkeit" category="Geschicklichkeit">Springen</skill>
+	<skill name="Gewandt" type="Fertigkeit" category="Geschicklichkeit">Gewandt</skill>
+	<skill name="Sprinten" type="Fertigkeit" category="Geschicklichkeit">Sprinten</skill>
+	<skill name="Sprintsicher" type="Fertigkeit" category="Geschicklichkeit">Sprintsicher</skill>
+	
+	<skill name="Tackle durchbrechen" type="Fertigkeit" category="Stärke">Tackle durchbrechen</skill>
+	<skill name="Guard" type="Fertigkeit" category="Stärke">Guard</skill>
+	<skill name="Knochenbrecher" type="Fertigkeit" category="Stärke">Knochenbrecher</skill>
+	<skill name="Mehrfachblock" type="Fertigkeit" category="Stärke">Mehrfachblock</skill>
+	<skill name="Piling on" type="Fertigkeit" category="Stärke">Piling on</skill>
+	<skill name="Standfest" type="Fertigkeit" category="Stärke">Standfest</skill>
+
+	<skill name="Zielsicher" type="Fertigkeit" category="Pass">Zielsicher</skill>
+	<skill name="Wurfsicher" type="Fertigkeit" category="Pass">Wurfsicher</skill>
+	<skill name="Dump-Off" type="Fertigkeit" category="Pass">Dump-Off</skill>
+	<skill name="Sicherer Pass" type="Fertigkeit" category="Pass">Sicherer Pass</skill>
+	<skill name="Hail Mary" type="Fertigkeit" category="Pass">Hail Mary</skill>
+	<skill name="Starker Wurfarm" type="Fertigkeit" category="Pass">Starker Wurfarm</skill>
+</skills>

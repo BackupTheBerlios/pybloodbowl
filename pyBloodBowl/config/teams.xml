@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<teams>
+	<team name="Amazonen" rr-cost="40000">
+		<player name="Feldspieler" max="12" ma="6" st="3" ag="3" av="7" cost="50000">
+			<skill name="Ausweichen"/>
+			<pick category="Allgemein"/>
+		</player>
+		<player name="Werfer" max="2" ma="6" st="3" ag="3" av="7" cost="70000">
+			<skill name="Ausweichen"/>
+			<skill name="Wurfsicher"/>
+			<pick category="Allgemein"/>
+			<pick category="Pass"/>
+		</player>
+		<player name="Fänger" max="2" ma="6" st="3" ag="3" av="7" cost="70000">
+			<skill name="Ausweichen"/>
+			<skill name="Fangsicher"/>
+			<pick category="Allgemein"/>
+			<pick category="Geschicklichkeit"/>
+		</player>
+		<player name="Blitzer" max="4" ma="6" st="3" ag="3" av="7" cost="90000">
+			<skill name="Ausweichen"/>
+			<skill name="Blocken"/>
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+		</player>
+	</team>
+	<team name="Chaos" rr-cost="70000">
+		<player name="Chaoskrieger" max="4" ma="5" st="4" ag="3" av="9" cost="100000">
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+			<pick category="Mutation"/>
+		</player>
+		<player name="Tiermensch" max="12" ma="6" st="3" ag="3" av="8" cost="60000">
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+			<pick category="Mutation"/>
+		</player>
+	</team>
+</teams>

@@ -1,0 +1,24 @@
+<project name="pyBloodBowl" default="compile">
+
+	<taskdef resource="pyAntTasks.properties"/>
+
+  	<property name="src.dir" value="src"/>
+	<property name="pydoc.dir" value="docs"/>
+
+  	<target name="compile">
+    	<py-compile python="c:\python\python.exe" dir="${src.dir}" pythonpath="${src.dir}" optimize="0"/>
+  	</target>
+
+	<target name="init">
+	 	<mkdir dir="${pydoc.dir}"/>
+	</target>
+
+	 <target name="pydoc" depends="init">
+ 		<py-doc python="c:\python\python.exe" pythonpath="${src.dir}" destdir="${pydoc.dir}">
+ 			<fileset dir="${src.dir}">
+  				<include name="**/*.py"/>
+    		</fileset>
+   		</py-doc>
+	</target>
+	
+</project>
