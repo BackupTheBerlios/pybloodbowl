@@ -6,7 +6,7 @@
 	<property name="pydoc.dir" value="docs"/>
 
   	<target name="compile">
-    	<py-compile python="c:\python\python.exe" dir="${src.dir}" pythonpath="${src.dir}" optimize="0"/>
+    	<py-compile python="python.exe" dir="${src.dir}" pythonpath="${src.dir}" optimize="0"/>
   	</target>
 
 	<target name="init">
@@ -14,7 +14,7 @@
 	</target>
 
 	 <target name="pydoc" depends="init">
- 		<py-doc python="c:\python\python.exe" pythonpath="${src.dir}" destdir="${pydoc.dir}">
+ 		<py-doc python="python.exe" pythonpath="${src.dir}" destdir="${pydoc.dir}">
  			<fileset dir="${src.dir}">
   				<include name="**/*.py"/>
     		</fileset>
