@@ -5,7 +5,7 @@ __version__ = "0.1.1"
 import xml.sax.handler
 
 class BBSkillHandler(xml.sax.handler.ContentHandler):
-    """Content Handler für skill.xml file. Wird von BBSkillParser verwendet."""    
+    """Content Handler for skill.xml file. Used by BBSkillParser."""    
     def __init__(self):
         self.buffer = ""
         self.mapping = {}
@@ -30,7 +30,7 @@ class BBSkillHandler(xml.sax.handler.ContentHandler):
         return self.mapping
 
 class BBSkillParser:
-    """Skill Parser für skill.xml file. Verwendet BBSkillHandler."""
+    """Skill Parser for skill.xml file. Uses BBSkillHandler."""
     def __init__(self, skillfile="config/skills.xml"):
         self.parser = xml.sax.make_parser()
         self.handler = BBSkillHandler()
@@ -38,11 +38,13 @@ class BBSkillParser:
         self.parser.parse(skillfile)
         
     def getSkills(self):
+        """-> dict
+        Return all Team/Position skills. Key is a tuple of Team and Position."""
         self.skills = self.handler.getSkills()
         return self.skills
 
 class BBTeamHandler(xml.sax.handler.ContentHandler):
-    """Content Handler für teams.xml file. Wird von BBTeamParser verwendet."""
+    """Content Handler for teams.xml file. Used by BBTeamParser."""
     def __init__(self):
         self.buffer = ""
         self.mapping = {}
@@ -50,12 +52,14 @@ class BBTeamHandler(xml.sax.handler.ContentHandler):
         self.teampositions = {}
         self.skillmapping = {}
         self.pickmapping = {}
+        self.rrcosts = {}
         self.teams = []
         self.team = ""
         
     def startElement(self, name, attributes):
         if name == "team":
             self.team = attributes["name"]
+            self.rrcosts[self.team] = attributes["rr-cost"]
             self.teams.append(attributes["name"])
             self.teampositions[self.team] = self.positions
         if name == "player":
@@ -81,7 +85,6 @@ class BBTeamHandler(xml.sax.handler.ContentHandler):
         return self.mapping
 
     def getTeamPositions(self, team):
-        print self.teampositions
         return self.teampositions[team]
         
     def getPlayerSkills(self):
@@ -89,9 +92,12 @@ class BBTeamHandler(xml.sax.handler.ContentHandler):
         
     def getPlayerPicks(self):
         return self.pickmapping
+    
+    def getRRCosts(self):
+        return self.rrcosts
 
 class BBTeamParser:
-    """Team Parser für teams.xml file. Verwendet BBTeamHandler."""
+    """Team Parser for teams.xml file. Uses BBTeamHandler."""
     def __init__(self, teamfile="config/teams.xml"):
         self.parser = xml.sax.make_parser()
         self.handler = BBTeamHandler()
@@ -126,6 +132,19 @@ class BBTeamParser:
         Returns all possible Player picks in a dictionary. Key is a tuple of Team and Position."""
         playerpicks = self.handler.getPlayerPicks()
         return playerpicks
+        
+    def getRRCosts(self):
+        """-> Dict
+        Returns all reroll costs of the teams in a dictionary. Key is the Team."""
+        rrcosts = self.handler.getRRCosts()
+        return rrcosts
+        
+    def getTeamRRCosts(self, team):
+        """-> int
+        Returns all reroll costs of the teams in a dictionary. Key is the Team."""
+        rrcosts = self.handler.getRRCosts()
+        rrc = int(rrcosts[team])
+        return rrc
     
 if __name__ == "__main__":
     ##########################################################################
@@ -137,7 +156,7 @@ if __name__ == "__main__":
     t = BBTeamParser()
     #pprint.pprint(t.getTeams())
     #pprint.pprint(t.getPlayers())
-    pprint.pprint(t.getPlayerSkills())
+    #pprint.pprint(t.getPlayerSkills())
     #pprint.pprint(t.getPlayerPicks())
-    #pprint.pprint(t.getTeamPositions("Chaos"))
+    pprint.pprint(t.getTeamPositions("Chaos"))
     

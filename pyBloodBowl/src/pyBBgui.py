@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = "Thorsten Schmidt"
-__version__ = "0.0.1"
+__version__ = "0.1.0"
 
 from Tkinter import *
 
@@ -144,5 +144,5 @@ class pyBBgui(Tk):
         self.quit()
 
 if __name__ == "__main__":
-    root = pBBgui()
+    root = pyBBgui()
     root.mainloop()
