@@ -5,9 +5,9 @@ __version__ = "0.0.1"
 from Tkinter import *
 
 C_TITLE    =    "pyBloodBowl"
-C_RACES = ["Menschen","Skaven","Nekromanten","Zwerge"]
+C_RACES    =    ["Menschen","Skaven","Nekromanten","Zwerge"]
 
-class pBBgui(Tk):
+class pyBBgui(Tk):
     
     def __init__(self):
         Tk.__init__(self)
