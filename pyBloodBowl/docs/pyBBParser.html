@@ -43,7 +43,7 @@
 <font color="#000000" face="helvetica, arial"><a name="BBSkillHandler">class <strong>BBSkillHandler</strong></a>(<a href="xml.sax.handler.html#ContentHandler">xml.sax.handler.ContentHandler</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>Content&nbsp;Handler&nbsp;für&nbsp;skill.xml&nbsp;file.&nbsp;Wird&nbsp;von&nbsp;<a href="#BBSkillParser">BBSkillParser</a>&nbsp;verwendet.<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt>Content&nbsp;Handler&nbsp;for&nbsp;skill.xml&nbsp;file.&nbsp;Used&nbsp;by&nbsp;<a href="#BBSkillParser">BBSkillParser</a>.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="BBSkillHandler-__init__"><strong>__init__</strong></a>(self)</dt></dl>
@@ -178,12 +178,13 @@ not&nbsp;guaranteed.</tt></dd></dl>
 <font color="#000000" face="helvetica, arial"><a name="BBSkillParser">class <strong>BBSkillParser</strong></a></font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>Skill&nbsp;Parser&nbsp;für&nbsp;skill.xml&nbsp;file.&nbsp;Verwendet&nbsp;<a href="#BBSkillHandler">BBSkillHandler</a>.<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt>Skill&nbsp;Parser&nbsp;for&nbsp;skill.xml&nbsp;file.&nbsp;Uses&nbsp;<a href="#BBSkillHandler">BBSkillHandler</a>.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="BBSkillParser-__init__"><strong>__init__</strong></a>(self, skillfile<font color="#909090">='config/skills.xml'</font>)</dt></dl>
 
-<dl><dt><a name="BBSkillParser-getSkills"><strong>getSkills</strong></a>(self)</dt></dl>
+<dl><dt><a name="BBSkillParser-getSkills"><strong>getSkills</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;dict<br>
+Return&nbsp;all&nbsp;Team/Position&nbsp;skills.&nbsp;Key&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;Team&nbsp;and&nbsp;Position.</tt></dd></dl>
 
 </td></tr></table> <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -192,7 +193,7 @@ not&nbsp;guaranteed.</tt></dd></dl>
 <font color="#000000" face="helvetica, arial"><a name="BBTeamHandler">class <strong>BBTeamHandler</strong></a>(<a href="xml.sax.handler.html#ContentHandler">xml.sax.handler.ContentHandler</a>)</font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>Content&nbsp;Handler&nbsp;für&nbsp;teams.xml&nbsp;file.&nbsp;Wird&nbsp;von&nbsp;<a href="#BBTeamParser">BBTeamParser</a>&nbsp;verwendet.<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt>Content&nbsp;Handler&nbsp;for&nbsp;teams.xml&nbsp;file.&nbsp;Used&nbsp;by&nbsp;<a href="#BBTeamParser">BBTeamParser</a>.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="BBTeamHandler-__init__"><strong>__init__</strong></a>(self)</dt></dl>
@@ -204,6 +205,8 @@ not&nbsp;guaranteed.</tt></dd></dl>
 <dl><dt><a name="BBTeamHandler-getPlayerSkills"><strong>getPlayerSkills</strong></a>(self)</dt></dl>
 
 <dl><dt><a name="BBTeamHandler-getPlayers"><strong>getPlayers</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="BBTeamHandler-getRRCosts"><strong>getRRCosts</strong></a>(self)</dt></dl>
 
 <dl><dt><a name="BBTeamHandler-getTeamPositions"><strong>getTeamPositions</strong></a>(self, team)</dt></dl>
 
@@ -342,7 +345,7 @@ not&nbsp;guaranteed.</tt></dd></dl>
 <font color="#000000" face="helvetica, arial"><a name="BBTeamParser">class <strong>BBTeamParser</strong></a></font></td></tr>
     
 <tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
-<td colspan=2><tt>Team&nbsp;Parser&nbsp;für&nbsp;teams.xml&nbsp;file.&nbsp;Verwendet&nbsp;<a href="#BBTeamHandler">BBTeamHandler</a>.<br>&nbsp;</tt></td></tr>
+<td colspan=2><tt>Team&nbsp;Parser&nbsp;for&nbsp;teams.xml&nbsp;file.&nbsp;Uses&nbsp;<a href="#BBTeamHandler">BBTeamHandler</a>.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="BBTeamParser-__init__"><strong>__init__</strong></a>(self, teamfile<font color="#909090">='config/teams.xml'</font>)</dt></dl>
@@ -356,8 +359,14 @@ Returns&nbsp;all&nbsp;Player&nbsp;Skills&nbsp;in&nbsp;a&nbsp;dictionary.&nbsp;Ke
 <dl><dt><a name="BBTeamParser-getPlayers"><strong>getPlayers</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;Dict<br>
 Returns&nbsp;all&nbsp;Players&nbsp;in&nbsp;a&nbsp;dictionary.&nbsp;Key&nbsp;is&nbsp;a&nbsp;tuple&nbsp;of&nbsp;Team&nbsp;and&nbsp;Position.</tt></dd></dl>
 
+<dl><dt><a name="BBTeamParser-getRRCosts"><strong>getRRCosts</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;Dict<br>
+Returns&nbsp;all&nbsp;reroll&nbsp;costs&nbsp;of&nbsp;the&nbsp;teams&nbsp;in&nbsp;a&nbsp;dictionary.&nbsp;Key&nbsp;is&nbsp;the&nbsp;Team.</tt></dd></dl>
+
 <dl><dt><a name="BBTeamParser-getTeamPositions"><strong>getTeamPositions</strong></a>(self, team)</dt><dd><tt>-&gt;&nbsp;List<br>
 Returns&nbsp;all&nbsp;position&nbsp;of&nbsp;the&nbsp;given&nbsp;team&nbsp;in&nbsp;a&nbsp;list.</tt></dd></dl>
+
+<dl><dt><a name="BBTeamParser-getTeamRRCosts"><strong>getTeamRRCosts</strong></a>(self, team)</dt><dd><tt>-&gt;&nbsp;int<br>
+Returns&nbsp;all&nbsp;reroll&nbsp;costs&nbsp;of&nbsp;the&nbsp;teams&nbsp;in&nbsp;a&nbsp;dictionary.&nbsp;Key&nbsp;is&nbsp;the&nbsp;Team.</tt></dd></dl>
 
 <dl><dt><a name="BBTeamParser-getTeams"><strong>getTeams</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;List<br>
 Returns&nbsp;all&nbsp;Teams&nbsp;in&nbsp;a&nbsp;list.</tt></dd></dl>
