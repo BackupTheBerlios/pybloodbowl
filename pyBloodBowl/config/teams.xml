@@ -31,9 +31,71 @@
 			<pick category="Mutation"/>
 		</player>
 		<player name="Tiermensch" max="12" ma="6" st="3" ag="3" av="8" cost="60000">
+			<skill name="Hörner"/>
 			<pick category="Allgemein"/>
 			<pick category="Stärke"/>
 			<pick category="Mutation"/>
+		</player>
+		<player name="Oger" max="1" ma="5" st="5" ag="2" av="9" cost="120000">
+			<skill name="Knochenbrecher"/>
+			<skill name="Robust"/>
+			<skill name="Big Guy"/>
+			<skill name="Mitspieler werfen"/>
+			<skill name="Dummkopf"/>
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+		</player>
+		<player name="Troll" max="1" ma="4" st="5" ag="1" av="9" cost="100000">
+			<skill name="Knochenbrecher"/>
+			<skill name="Nimmersatt"/>
+			<skill name="Big Guy"/>
+			<skill name="Saublöd"/>
+			<skill name="Regeneration"/>
+			<skill name="Mitspieler werfen"/>
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+		</player>
+		<player name="Minotaurus" max="1" ma="5" st="5" ag="2" av="8" cost="110000">
+			<skill name="Knochenbrecher"/>
+			<skill name="Hörner"/>
+			<skill name="Raserei"/>
+			<skill name="Robust"/>
+			<skill name="Nimmersatt"/>
+			<skill name="Big Guy"/>
+			<skill name="Mitspieler werfen"/>
+			<skill name="Wildes Tier"/>
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+			<pick category="Mutation"/>
+		</player>
+	</team>
+	<team name="Chaoszwerge" rr-cost="50000">
+		<player name="Hobgoblin" max="12" ma="6" st="3" ag="3" av="7" cost="40000">
+			<pick category="Allgemein"/>
+		</player>
+		<player name="Chaoszwerg" max="6" ma="4" st="3" ag="2" av="9" cost="70000">
+			<skill name="Blocken"/>
+			<skill name="Tackle"/>
+			<skill name="Robust"/>
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+		</player>
+		<player name="Stierzentaur" max="2" ma="6" st="4" ag="2" av="9" cost="130000">
+			<skill name="Sprinten"/>
+			<skill name="Sprintsicher"/>
+			<skill name="Robust"/>
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
+		</player>
+		<player name="Troll" max="1" ma="4" st="5" ag="1" av="9" cost="100000">
+			<skill name="Knochenbrecher"/>
+			<skill name="Nimmersatt"/>
+			<skill name="Big Guy"/>
+			<skill name="Saublöd"/>
+			<skill name="Regeneration"/>
+			<skill name="Mitspieler werfen"/>
+			<pick category="Allgemein"/>
+			<pick category="Stärke"/>
 		</player>
 	</team>
 </teams>
