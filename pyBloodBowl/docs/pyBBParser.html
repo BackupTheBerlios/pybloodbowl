@@ -17,7 +17,7 @@
 <font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
     
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="_xmlplus.html">_xmlplus</a><br>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="xml.html">xml</a><br>
 </td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
@@ -88,10 +88,7 @@ SAX&nbsp;parsers&nbsp;may&nbsp;return&nbsp;all&nbsp;contiguous&nbsp;whitespace&n
 chunk,&nbsp;or&nbsp;they&nbsp;may&nbsp;split&nbsp;it&nbsp;into&nbsp;several&nbsp;chunks;&nbsp;however,&nbsp;all<br>
 of&nbsp;the&nbsp;characters&nbsp;in&nbsp;any&nbsp;single&nbsp;event&nbsp;must&nbsp;come&nbsp;from&nbsp;the&nbsp;same<br>
 external&nbsp;entity,&nbsp;so&nbsp;that&nbsp;the&nbsp;Locator&nbsp;provides&nbsp;useful<br>
-information.<br>
-&nbsp;<br>
-The&nbsp;application&nbsp;must&nbsp;not&nbsp;attempt&nbsp;to&nbsp;read&nbsp;from&nbsp;the&nbsp;array<br>
-outside&nbsp;of&nbsp;the&nbsp;specified&nbsp;range.</tt></dd></dl>
+information.</tt></dd></dl>
 
 <dl><dt><a name="BBSkillHandler-processingInstruction"><strong>processingInstruction</strong></a>(self, target, data)</dt><dd><tt>Receive&nbsp;notification&nbsp;of&nbsp;a&nbsp;processing&nbsp;instruction.<br>
 &nbsp;<br>
@@ -184,7 +181,7 @@ not&nbsp;guaranteed.</tt></dd></dl>
 <td colspan=2><tt>Skill&nbsp;Parser&nbsp;für&nbsp;skill.xml&nbsp;file.&nbsp;Verwendet&nbsp;<a href="#BBSkillHandler">BBSkillHandler</a>.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="BBSkillParser-__init__"><strong>__init__</strong></a>(self, skillfile<font color="#909090">='skills.xml'</font>)</dt></dl>
+<dl><dt><a name="BBSkillParser-__init__"><strong>__init__</strong></a>(self, skillfile<font color="#909090">='config/skills.xml'</font>)</dt></dl>
 
 <dl><dt><a name="BBSkillParser-getSkills"><strong>getSkills</strong></a>(self)</dt></dl>
 
@@ -248,10 +245,7 @@ SAX&nbsp;parsers&nbsp;may&nbsp;return&nbsp;all&nbsp;contiguous&nbsp;whitespace&n
 chunk,&nbsp;or&nbsp;they&nbsp;may&nbsp;split&nbsp;it&nbsp;into&nbsp;several&nbsp;chunks;&nbsp;however,&nbsp;all<br>
 of&nbsp;the&nbsp;characters&nbsp;in&nbsp;any&nbsp;single&nbsp;event&nbsp;must&nbsp;come&nbsp;from&nbsp;the&nbsp;same<br>
 external&nbsp;entity,&nbsp;so&nbsp;that&nbsp;the&nbsp;Locator&nbsp;provides&nbsp;useful<br>
-information.<br>
-&nbsp;<br>
-The&nbsp;application&nbsp;must&nbsp;not&nbsp;attempt&nbsp;to&nbsp;read&nbsp;from&nbsp;the&nbsp;array<br>
-outside&nbsp;of&nbsp;the&nbsp;specified&nbsp;range.</tt></dd></dl>
+information.</tt></dd></dl>
 
 <dl><dt><a name="BBTeamHandler-processingInstruction"><strong>processingInstruction</strong></a>(self, target, data)</dt><dd><tt>Receive&nbsp;notification&nbsp;of&nbsp;a&nbsp;processing&nbsp;instruction.<br>
 &nbsp;<br>
@@ -344,7 +338,7 @@ not&nbsp;guaranteed.</tt></dd></dl>
 <td colspan=2><tt>Team&nbsp;Parser&nbsp;für&nbsp;teams.xml&nbsp;file.&nbsp;Verwendet&nbsp;<a href="#BBTeamHandler">BBTeamHandler</a>.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="BBTeamParser-__init__"><strong>__init__</strong></a>(self, teamfile<font color="#909090">='teams.xml'</font>)</dt></dl>
+<dl><dt><a name="BBTeamParser-__init__"><strong>__init__</strong></a>(self, teamfile<font color="#909090">='config/teams.xml'</font>)</dt></dl>
 
 </td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
