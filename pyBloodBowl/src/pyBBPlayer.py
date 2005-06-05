@@ -8,6 +8,7 @@ __SSP_CASUALTY__ = 2
 __SSP_MVP__ = 5
 
 import pyBBParser
+import pyBBSkill
 
 class BBPlayer:
     """This class represents a BloodBowl Player."""
@@ -26,7 +27,11 @@ class BBPlayer:
     def _initStats(self):
         """Initialize player with his initial stats."""
         players = self.teamparser.getPlayers()
-        stats = players[(self.team,self.position)]
+        try:
+            stats = players[(self.team,self.position)]
+        except KeyError, err:
+            stats = (0,0,0,0,0,0)
+            raise TypeError, "Invalid Team/Position: " + self.team
         self.max = int(stats[0])    #maximum
         self.ma = int(stats[1])     #movement
         self.st = int(stats[2])     #strength
@@ -44,12 +49,28 @@ class BBPlayer:
     def _initSkills(self):
         """Initialize player with initial skills."""
         skills = self.teamparser.getPlayerSkills()
-        self.skills = skills[(self.team, self.position)] #initial skills
+        try:
+            skills = skills[(self.team, self.position)] #initial skills
+        except KeyError, err:
+            skills = []
+            raise TypeError, "Invalid Team/Position: " + self.team
+        for skill in skills:
+            skobj = pyBBSkill.BBSkill(skill)
+            self.skills.append(skobj)
         
     def _initPicks(self):
         """Initialize player with his picks."""
         picks = self.teamparser.getPlayerPicks()
-        self.picks = picks[(self.team, self.position)]   #players picks
+        try:
+            self.picks = picks[(self.team, self.position)]   #players picks
+        except KeyError, err:
+            self.picks = []
+            raise TypeError, "Invalid Team/Position: " + self.team
+    
+    def getTeam(self):
+        """-> str
+        Return the player's team."""
+        return self.team
     
     def getMovement(self):
         """-> int
@@ -94,7 +115,7 @@ class BBPlayer:
         
     def getSkills(self):
         """-> list
-        Returns a list of all player skills."""
+        Returns a list of all player skills. See pyBBSkill.BBSkill."""
         return self.skills
         
     def getPicks(self):
@@ -180,19 +201,14 @@ class BBPlayer:
         
     def __repr__(self):
         """String representation of the player."""
-        repr = "%s (%s/%s)\nMA:%s\nST:%s\nAG:%s\nAV:%s\nSkills: " % (self.name, self.team, self.position, self.ma, self.st, self.ag, self.av)
-        for skill in self.skills:
-            repr += "%s " % (skill)
-        repr += "\nPick: "
-        for pick in self.picks:
-            repr += "%s " % (pick)
-        repr += "\nCosts: %s" % (self.costs)
+        repr = "<BBPlayer %s at %s>" % (self.name, hex(id(self)))
         return repr
 
 if __name__ == "__main__":
-    p = BBPlayer("Hugo Schwarzhuf", "Chaos", unicode("Tiermensch","latin-1"))
-
-    print p.__repr__().encode("latin-1")
-    print p.isValidSkill("bla")
+    p = BBPlayer("Hugo Schwarzhuf", "Amazonen", "Fänger")
+    p2 = BBPlayer("Hugo Schwarzhuf", "Chaos", unicode("Tiermensch","latin-1"))
+    #print p.__repr__().encode("latin-1")
+    print "skill bla ist valid:", p.isValidSkill("bla")
     p.addTouchdowns(2)
-    print p.getSSP()
+    print "SSP:",p.getSSP()
+    print p.getSkills()
