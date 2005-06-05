@@ -37,4 +37,6 @@
 	<skill name="Sicherer Pass" type="Fertigkeit" category="Pass">Sicherer Pass</skill>
 	<skill name="Hail Mary" type="Fertigkeit" category="Pass">Hail Mary</skill>
 	<skill name="Starker Wurfarm" type="Fertigkeit" category="Pass">Starker Wurfarm</skill>
+	
+	<skill name="Hörner" type="Fertigkeit" category="Pass">Starker Wurfarm</skill>
 </skills>
