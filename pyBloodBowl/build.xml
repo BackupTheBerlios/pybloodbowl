@@ -27,9 +27,9 @@
 		unit test module.
 	-->
 	<target name="tests" depends="compile">
-		<py-test python="python" pythonpath="${src.dir}" dir=".">
+		<py-test python="python" pythonpath="${src.dir}" dir="${src.dir}">
 			<fileset dir="${src.dir}">
-				<include name="**/*Test.py"/>
+				<include name="**/*test.py"/>
 			</fileset>
 		</py-test>
 	</target>
