@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: Cp1252 -*-
 __author__ = "Thorsten Schmidt"
 __version__ = "0.1.1"
 __SSP_COMPLETION__ = 1
@@ -7,30 +7,29 @@ __SSP_INTERCEPTION__ = 2
 __SSP_CASUALTY__ = 2
 __SSP_MVP__ = 5
 
-import pyBBParser
 import pyBBSkill
 
 class BBPlayer:
     """This class represents a BloodBowl Player."""
-    def __init__(self, name, team, position):
+    def __init__(self, name, team, position, teamparser, skillparser):
         self.name = str(name)
         self.team = team
         self.position = position
-        self.teamparser  = pyBBParser.BBTeamParser()
-        self.skillparser = pyBBParser.BBSkillParser()
+        self.teamparser  = teamparser
+        self.skillparser = skillparser
         self.skills = []
         self.picks = []
-        self._initStats()
-        self._initSkills()
-        self._initPicks()
+        self.__initStats()
+        self.__initSkills()
+        self.__initPicks()
     
-    def _initStats(self):
+    def __initStats(self):
         """Initialize player with his initial stats."""
         players = self.teamparser.getPlayers()
         try:
-            stats = players[(self.team,self.position)]
+            stats = players[(self.team, self.position)]
         except KeyError, err:
-            stats = (0,0,0,0,0,0)
+            stats = (0, 0, 0, 0, 0, 0)
             raise TypeError, "Invalid Team/Position: " + self.team
         self.max = int(stats[0])    #maximum
         self.ma = int(stats[1])     #movement
@@ -46,7 +45,7 @@ class BBPlayer:
         self.casualties = 0         #casualties
         self.mvpawards = 0          #most valuable player awards
         
-    def _initSkills(self):
+    def __initSkills(self):
         """Initialize player with initial skills."""
         skills = self.teamparser.getPlayerSkills()
         try:
@@ -55,10 +54,10 @@ class BBPlayer:
             skills = []
             raise TypeError, "Invalid Team/Position: " + self.team
         for skill in skills:
-            skobj = pyBBSkill.BBSkill(skill)
+            skobj = pyBBSkill.BBSkill(skill, self.skillparser)
             self.skills.append(skobj)
         
-    def _initPicks(self):
+    def __initPicks(self):
         """Initialize player with his picks."""
         picks = self.teamparser.getPlayerPicks()
         try:

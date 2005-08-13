@@ -8,15 +8,11 @@ import pyBBPlayer
 
 class BBSquad:
     """This class represents the squad of the team.
-    Players can be added by calling the addPlayer method e.g.
-    >>> myTeam = BBTeam("Menschen")
-    >>> myTeam.addPlayer(3, BBPlayer("Rudi","Menschen","Werfer"))
-    or
-    >>> myTeam[3] = BBPlayer("Rudi","Menschen","Werfer")"""
-    def __init__(self, team, max=16):
+    Players can be added by calling the addPlayer method """
+    def __init__(self, teamparser, team, max=16):
         """Constructor
         Specify a team and maximum number of players in the squad."""
-        self.teamparser = pyBBParser.BBTeamParser()
+        self.teamparser = teamparser
         self.validteams = self.teamparser.getTeams()
         if self.isValidTeam(team) == False:
             err = "invalid team %s. valid teams are %s" % (team, self.validteams)
@@ -102,13 +98,15 @@ class BBSquad:
         return repr
         
 if __name__ == "__main__":
-
-    s = BBSquad("Amazonen")
     
-    p1 = pyBBPlayer.BBPlayer("Heino","Amazonen","Blitzer")
-    p2 = pyBBPlayer.BBPlayer("Ludwig","Amazonen","Werfer")
-    p3 = pyBBPlayer.BBPlayer("Rudi","Amazonen","Werfer")
-    s.addPlayer(1,p1)
+    teamparser = pyBBParser.BBTeamParser()
+    skillparser = pyBBParser.BBSkillParser()
+    s = BBSquad(teamparser, "Amazonen")
+    
+    p1 = pyBBPlayer.BBPlayer("Heino", "Amazonen", "Blitzer", teamparser, skillparser)
+    p2 = pyBBPlayer.BBPlayer("Ludwig", "Amazonen", "Werfer", teamparser, skillparser)
+    p3 = pyBBPlayer.BBPlayer("Rudi", "Amazonen", "Werfer", teamparser, skillparser)
+    s.addPlayer(1, p1)
     s[2] = p2
     print s.getPlayers()
     print len(s)

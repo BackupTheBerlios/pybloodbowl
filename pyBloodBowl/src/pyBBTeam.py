@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: Cp1252 -*-
 __author__ = "Thorsten Schmidt"
 __version__ = "0.1.1"
 __COSTS_FF__ = 10000
@@ -21,11 +21,11 @@ class BBTeam:
         self.cheerleader = cheerleader
         self.apothecary = apothecary
         self.treasury = 1000000
-        self.squad = pyBBSquad.BBSquad(self.team) #init squad
         self.teamparser  = pyBBParser.BBTeamParser()
-        self._initProperties()
+        self.squad = pyBBSquad.BBSquad(self.teamparser, self.team) #init squad
+        self.__initProperties()
         
-    def _initProperties(self):
+    def __initProperties(self):
         #subtract some costs
         self.rrcosts = self.teamparser.getTeamRRCosts(self.team)
         rrcosts = self.rrcosts * self.rerolls
@@ -70,7 +70,8 @@ class BBTeam:
     def getTeamProperties(self):
         """-> tuple
         Returns a tuple of teamproperties (Teamname, Coach, Cheerleader, etc)."""
-        props = (self.teamname,self.team,self.coach,self.fanfactor,self.cheerleader,self.apothecary)
+        props = (self.teamname, self.team, 
+        self.coach, self.fanfactor, self.cheerleader, self.apothecary)
         return props
         
     def getSquad(self):

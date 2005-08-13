@@ -1,27 +1,34 @@
-# -*- coding: utf-8 -*-
+# -*- coding: Cp1252 -*-
 __author__ = "Thorsten Schmidt"
 __version__ = "0.1.0"
 
-from Tkinter import *
+import pyBBParser
+import tkMessageBox
+from Tkinter import Tk, Frame, Label, PhotoImage, \
+                    Menu, Entry, StringVar, OptionMenu, \
+                    E, N, S, W, GROOVE, SUNKEN, RIGHT
 
 C_TITLE    =    "pyBloodBowl"
-C_RACES    =    ["Menschen","Skaven","Nekromanten","Zwerge"]
 
 class pyBBgui(Tk):
     
     def __init__(self):
         Tk.__init__(self)
+        self.teamparser = pyBBParser.BBTeamParser()
+        self.races = self.teamparser.getTeams()
+        self.positions = self.teamparser.getTeamPositions("Amazonen")
         self._initMenu()
         self._initHeaderFrame()
         self._initTeam()
         self._initRooster()
         self.title(C_TITLE)
+        self.protocol("WM_DELETE_WINDOW", self.onExit)
 
-        self.resizable(0,0)
+        self.resizable(0, 0)
     
     def _initHeaderFrame(self):
         self.headerframe = Frame(self, borderwidth=2, relief=SUNKEN)
-        self.logo = PhotoImage(file="ressources/logo.gif")
+        self.logo = PhotoImage(file="../ressources/logo.gif")
         lablogo = Label(self.headerframe, image=self.logo)
         lablogo.grid(row=0, column=0)
         self.headerframe.grid(row=0, column=0, columnspan=2, sticky=N+S+E+W)
@@ -44,9 +51,10 @@ class pyBBgui(Tk):
         txtteamname = Entry(self.teamframe)
         txtteamname.grid(row=0, column=1, sticky=N+S+E+W)
         self.vteamname = StringVar()
-        self.vteamname.set("Menschen") # initialize
-        b = apply(OptionMenu, (self.teamframe, self.vteamname) + tuple(C_RACES))
-        b.grid(row=2, column=0, sticky=N+S+E+W)
+        self.vteamname.set("Amazonen") # initialize
+        button = apply(OptionMenu, (self.teamframe, self.vteamname) + tuple(self.races))
+        button.bind("<FocusOut>", self.changedTeamCallback)
+        button.grid(row=2, column=0, sticky=N+S+E+W)
         self.teamframe.grid(row=1, column=0, sticky=N+S+E+W)
         
     def _initRooster(self):
@@ -88,8 +96,15 @@ class pyBBgui(Tk):
             self.roosterName.append( Entry(self.roosterframe) )
             self.roosterName[i-1].grid(row=i, column=1, sticky=W)
             
-            self.roosterPos.append( Entry(self.roosterframe) )
+            self.vposname = StringVar()
+            self.vposname.set(self.positions[0]) # initialize
+            b = apply(OptionMenu, (self.roosterframe, self.vposname) + tuple(self.positions))
+            self.roosterPos.append( b )
             self.roosterPos[i-1].grid(row=i, column=2, sticky=W)
+            self.roosterPos[i-1].config(width=16)
+            
+            #self.roosterPos.append( Entry(self.roosterframe) )
+            #self.roosterPos[i-1].grid(row=i, column=2, sticky=W)
             
             self.roosterBW.append( Entry(self.roosterframe, width=3) )
             self.roosterBW[i-1].grid(row=i, column=3, sticky=W)
@@ -139,9 +154,13 @@ class pyBBgui(Tk):
     def callback(self):
         print "called the callback"
         
+    def changedTeamCallback(self, event):
+        print self.vteamname.get()
+        
     def onExit(self):
         '''Beendet die Anwendung'''
-        self.quit()
+        if tkMessageBox.askokcancel("Quit", "Do you really want to quit?"):
+            self.quit()
 
 if __name__ == "__main__":
     root = pyBBgui()

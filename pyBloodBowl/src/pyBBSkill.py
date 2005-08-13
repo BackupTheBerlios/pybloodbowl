@@ -1,25 +1,24 @@
-# -*- coding: utf-8 -*-
+# -*- coding: Cp1252 -*-
 __author__ = "Thorsten Schmidt"
 __version__ = "0.1.0"
-__IS_TRAIT__ = ["merkmal","merkmale","trait","traits"]
+__IS_TRAIT__ = ["merkmal", "merkmale", "trait", "traits"]
 
-import pyBBParser
 import string
 
 class BBSkill:
     """This class represents a skill, trait or racial characteristic.
     To create a skill object use
     
-    >>> skill = BBSkill('Block')
+    >>> skill = BBSkill('Block', skillparser)
     
     The skillname must be found in the skills.xml config file, otherwise all skill properties will be empty."""
-    def __init__(self, skillname):
+    def __init__(self, skillname, skillparser):
         """Constructor"""
         self.skillname = skillname
-        self.skillparser = pyBBParser.BBSkillParser()
-        self._initProperties()
+        self.skillparser = skillparser
+        self.__initProperties()
         
-    def _initProperties(self):
+    def __initProperties(self):
         """Initialize skill properties."""
         try:
             skillprops = self.skillparser.getSkill(self.skillname)
@@ -61,7 +60,4 @@ class BBSkill:
         return repr
 
 if __name__ == "__main__":
-    s = BBSkill("Ballgefühl")
-    print s
-    print s.getDescription()
-    print s.isTrait()
+    pass

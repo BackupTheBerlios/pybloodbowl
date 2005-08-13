@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: Cp1252 -*-
 __author__ = "Thorsten Schmidt"
 __version__ = "0.1.2"
 __encoding__ = "Cp1252"
@@ -8,6 +8,7 @@ import xml.sax.handler
 class BBSkillHandler(xml.sax.handler.ContentHandler):
     """Content Handler for skill.xml file. Used by BBSkillParser."""    
     def __init__(self):
+        #xml.sax.handler.ContentHandler.__init__()
         self.buffer = ""
         self.mapping = {}
         
@@ -25,7 +26,7 @@ class BBSkillHandler(xml.sax.handler.ContentHandler):
  
     def endElement(self, name):
         if name == "skill":
-            self.mapping[self.name] = (self.type,self.category,self.buffer)
+            self.mapping[self.name] = (self.type, self.category, self.buffer)
             
     def getSkills(self):
         return self.mapping
@@ -55,6 +56,7 @@ class BBSkillParser:
 class BBTeamHandler(xml.sax.handler.ContentHandler):
     """Content Handler for teams.xml file. Used by BBTeamParser."""
     def __init__(self):
+        #xml.sax.handler.ContentHandler.__init__()
         self.buffer = ""
         self.mapping = {}
         self.positions = []
@@ -80,7 +82,7 @@ class BBTeamHandler(xml.sax.handler.ContentHandler):
         if name == "skill":
             self.skillmapping[(self.team,self.player)].append(attributes["name"].encode(__encoding__))
         if name == "pick":
-            self.pickmapping[(self.team,self.player)].append(attributes["category"].encode(__encoding__))
+            self.pickmapping[(self.team, self.player)].append(attributes["category"].encode(__encoding__))
     
     def endElement(self, name):
         if name == "team":
@@ -167,5 +169,4 @@ if __name__ == "__main__":
     pprint.pprint(t.getPlayers())
     pprint.pprint(t.getPlayerSkills())
     pprint.pprint(t.getPlayerPicks())
-    pprint.pprint(t.getTeamPositions("Chaos"))
-    
+    pprint.pprint(t.getTeamPositions("Chaos"))    
