@@ -9,7 +9,7 @@
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pyBBPlayer</strong></big></big> (version 0.1.1)</font></td
 ><td align=right valign=bottom
 ><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C|/eclipse/workspace/pybloodbowl/src/pybbplayer.py">c:\eclipse\workspace\pybloodbowl\src\pybbplayer.py</a></font></td></tr></table>
-    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;Cp1252&nbsp;-*-</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#aa55cc">
@@ -17,7 +17,7 @@
 <font color="#fffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
     
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pyBBParser.html">pyBBParser</a><br>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pyBBSkill.html">pyBBSkill</a><br>
 </td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
@@ -38,11 +38,23 @@
 <td colspan=2><tt>This&nbsp;class&nbsp;represents&nbsp;a&nbsp;BloodBowl&nbsp;Player.<br>&nbsp;</tt></td></tr>
 <tr><td>&nbsp;</td>
 <td width="100%">Methods defined here:<br>
-<dl><dt><a name="BBPlayer-__init__"><strong>__init__</strong></a>(self, name, team, position)</dt></dl>
+<dl><dt><a name="BBPlayer-__init__"><strong>__init__</strong></a>(self, name, team, position, teamparser, skillparser)</dt></dl>
 
 <dl><dt><a name="BBPlayer-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>String&nbsp;representation&nbsp;of&nbsp;the&nbsp;player.</tt></dd></dl>
 
+<dl><dt><a name="BBPlayer-addCasualties"><strong>addCasualties</strong></a>(self, number)</dt><dd><tt>Adding&nbsp;a&nbsp;number&nbsp;of&nbsp;casualties.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-addCompletions"><strong>addCompletions</strong></a>(self, number)</dt><dd><tt>Adding&nbsp;a&nbsp;number&nbsp;of&nbsp;completions.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-addInterceptions"><strong>addInterceptions</strong></a>(self, number)</dt><dd><tt>Adding&nbsp;a&nbsp;number&nbsp;of&nbsp;interceptions.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-addMVPAwards"><strong>addMVPAwards</strong></a>(self, number)</dt><dd><tt>Adding&nbsp;a&nbsp;number&nbsp;of&nbsp;MVP&nbsp;Awards.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-addNigglingInjury"><strong>addNigglingInjury</strong></a>(self, number)</dt><dd><tt>Gain&nbsp;a&nbsp;number&nbsp;of&nbsp;new&nbsp;niggling&nbsp;injuries.</tt></dd></dl>
+
 <dl><dt><a name="BBPlayer-addSkill"><strong>addSkill</strong></a>(self, newskill)</dt><dd><tt>Add&nbsp;a&nbsp;newskill&nbsp;to&nbsp;the&nbsp;players&nbsp;list&nbsp;of&nbsp;skills.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-addTouchdowns"><strong>addTouchdowns</strong></a>(self, number)</dt><dd><tt>Adding&nbsp;a&nbsp;number&nbsp;of&nbsp;touchdowns.</tt></dd></dl>
 
 <dl><dt><a name="BBPlayer-getAgility"><strong>getAgility</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
 Returns&nbsp;players&nbsp;agility.</tt></dd></dl>
@@ -50,8 +62,20 @@ Returns&nbsp;players&nbsp;agility.</tt></dd></dl>
 <dl><dt><a name="BBPlayer-getArmor"><strong>getArmor</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
 Returns&nbsp;players&nbsp;armor&nbsp;value.</tt></dd></dl>
 
+<dl><dt><a name="BBPlayer-getCasualties"><strong>getCasualties</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;caused&nbsp;casualties.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-getCompletions"><strong>getCompletions</strong></a>(self)</dt><dd><tt>-&nbsp;int<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;completions.</tt></dd></dl>
+
 <dl><dt><a name="BBPlayer-getCosts"><strong>getCosts</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
 Returns&nbsp;players&nbsp;costs.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-getInterceptions"><strong>getInterceptions</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;interceptions.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-getMVPAwards"><strong>getMVPAwards</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;earned&nbsp;MVP&nbsp;awards.</tt></dd></dl>
 
 <dl><dt><a name="BBPlayer-getMovement"><strong>getMovement</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
 Returns&nbsp;players&nbsp;movement.</tt></dd></dl>
@@ -59,14 +83,31 @@ Returns&nbsp;players&nbsp;movement.</tt></dd></dl>
 <dl><dt><a name="BBPlayer-getPicks"><strong>getPicks</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;list<br>
 Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;player&nbsp;picks.</tt></dd></dl>
 
+<dl><dt><a name="BBPlayer-getSSP"><strong>getSSP</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;StarPlayerPoints.</tt></dd></dl>
+
 <dl><dt><a name="BBPlayer-getSkills"><strong>getSkills</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;list<br>
-Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;player&nbsp;skills.</tt></dd></dl>
+Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;player&nbsp;skills.&nbsp;See&nbsp;pyBBSkill.BBSkill.</tt></dd></dl>
 
 <dl><dt><a name="BBPlayer-getStrength"><strong>getStrength</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
 Returns&nbsp;players&nbsp;strength.</tt></dd></dl>
 
+<dl><dt><a name="BBPlayer-getTeam"><strong>getTeam</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;str<br>
+Return&nbsp;the&nbsp;player's&nbsp;team.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-getTouchdowns"><strong>getTouchdowns</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;int<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;scored&nbsp;touchdowns.</tt></dd></dl>
+
 <dl><dt><a name="BBPlayer-isValidSkill"><strong>isValidSkill</strong></a>(self, skill)</dt><dd><tt>-&gt;&nbsp;bool<br>
 Checks&nbsp;if&nbsp;a&nbsp;given&nbsp;skill&nbsp;is&nbsp;valid&nbsp;for&nbsp;the&nbsp;player.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-setAgility"><strong>setAgility</strong></a>(self, agility)</dt><dd><tt>Set&nbsp;the&nbsp;players&nbsp;agility.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-setArmor"><strong>setArmor</strong></a>(self, armor)</dt><dd><tt>Set&nbsp;the&nbsp;players&nbsp;armor&nbsp;value.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-setMovement"><strong>setMovement</strong></a>(self, movement)</dt><dd><tt>Set&nbsp;the&nbsp;players&nbsp;movement.</tt></dd></dl>
+
+<dl><dt><a name="BBPlayer-setStrength"><strong>setStrength</strong></a>(self, strength)</dt><dd><tt>Set&nbsp;the&nbsp;players&nbsp;strength.</tt></dd></dl>
 
 </td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -75,7 +116,12 @@ Checks&nbsp;if&nbsp;a&nbsp;given&nbsp;skill&nbsp;is&nbsp;valid&nbsp;for&nbsp;the
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>__author__</strong> = 'Thorsten Schmidt'<br>
+<td width="100%"><strong>__SSP_CASUALTY__</strong> = 2<br>
+<strong>__SSP_COMPLETION__</strong> = 1<br>
+<strong>__SSP_INTERCEPTION__</strong> = 2<br>
+<strong>__SSP_MVP__</strong> = 5<br>
+<strong>__SSP_TOUCHDOWN__</strong> = 3<br>
+<strong>__author__</strong> = 'Thorsten Schmidt'<br>
 <strong>__version__</strong> = '0.1.1'</td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#7799ee">

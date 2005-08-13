@@ -6,10 +6,10 @@
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="#7799ee">
 <td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pyBBTeam</strong></big></big> (version 0.1.0)</font></td
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>pyBBTeam</strong></big></big> (version 0.1.1)</font></td
 ><td align=right valign=bottom
 ><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:///C|/eclipse/workspace/pybloodbowl/src/pybbteam.py">c:\eclipse\workspace\pybloodbowl\src\pybbteam.py</a></font></td></tr></table>
-    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;utf-8&nbsp;-*-</tt></p>
+    <p><tt>#&nbsp;-*-&nbsp;coding:&nbsp;Cp1252&nbsp;-*-</tt></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#aa55cc">
@@ -19,7 +19,8 @@
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
 <td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="pyBBParser.html">pyBBParser</a><br>
 </td><td width="25%" valign=top><a href="pyBBPlayer.html">pyBBPlayer</a><br>
-</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+</td><td width="25%" valign=top><a href="pyBBSquad.html">pyBBSquad</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ee77aa">
 <td colspan=3 valign=bottom>&nbsp;<br>
@@ -41,7 +42,7 @@
 <td width="100%">Methods defined here:<br>
 <dl><dt><a name="BBTeam-__delitem__"><strong>__delitem__</strong></a>(self, index)</dt><dd><tt>Remove&nbsp;a&nbsp;player&nbsp;from&nbsp;the&nbsp;team&nbsp;rooster&nbsp;at&nbsp;a&nbsp;given&nbsp;index.</tt></dd></dl>
 
-<dl><dt><a name="BBTeam-__init__"><strong>__init__</strong></a>(self, teamname, team, coach, rerolls, fanfactor, cheerleader, apothecary)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;Team&nbsp;with&nbsp;a&nbsp;given&nbsp;teamname&nbsp;and&nbsp;race(team).</tt></dd></dl>
+<dl><dt><a name="BBTeam-__init__"><strong>__init__</strong></a>(self, teamname, team, coach, rerolls, fanfactor, cheerleader<font color="#909090">=0</font>, apothecary<font color="#909090">=0</font>)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;Team&nbsp;with&nbsp;a&nbsp;given&nbsp;teamname&nbsp;and&nbsp;race(team).</tt></dd></dl>
 
 <dl><dt><a name="BBTeam-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><tt>String&nbsp;representation&nbsp;of&nbsp;the&nbsp;team.</tt></dd></dl>
 
@@ -55,7 +56,7 @@
 
 <dl><dt><a name="BBTeam-buyRerolls"><strong>buyRerolls</strong></a>(self, number)</dt><dd><tt>Buy&nbsp;a&nbsp;number&nbsp;of&nbsp;rerolls.&nbsp;Treasury&nbsp;will&nbsp;be&nbsp;redueced&nbsp;by&nbsp;the&nbsp;costs.</tt></dd></dl>
 
-<dl><dt><a name="BBTeam-getPlayers"><strong>getPlayers</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;list<br>
+<dl><dt><a name="BBTeam-getSquad"><strong>getSquad</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;list<br>
 Returns&nbsp;all&nbsp;players&nbsp;in&nbsp;a&nbsp;list.&nbsp;See&nbsp;pyBBPlayer.py&nbsp;and&nbsp;BBPlayer.</tt></dd></dl>
 
 <dl><dt><a name="BBTeam-getTeamProperties"><strong>getTeamProperties</strong></a>(self)</dt><dd><tt>-&gt;&nbsp;tuple<br>
@@ -70,10 +71,11 @@ Returns&nbsp;a&nbsp;tuple&nbsp;of&nbsp;teamproperties&nbsp;(Teamname,&nbsp;Coach
 <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
     
 <tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><strong>__COSTS_CHEERLEADER__</strong> = 10000<br>
+<td width="100%"><strong>__COSTS_APOTHECARY__</strong> = 50000<br>
+<strong>__COSTS_CHEERLEADER__</strong> = 10000<br>
 <strong>__COSTS_FF__</strong> = 10000<br>
 <strong>__author__</strong> = 'Thorsten Schmidt'<br>
-<strong>__version__</strong> = '0.1.0'</td></tr></table><p>
+<strong>__version__</strong> = '0.1.1'</td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#7799ee">
 <td colspan=3 valign=bottom>&nbsp;<br>
